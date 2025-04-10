@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 /**
  *
@@ -110,7 +111,8 @@ public class ConnDbOps {
                 String email = resultSet.getString("email");
                 String phone = resultSet.getString("phone");
                 String address = resultSet.getString("address");
-                System.out.println("ID: " + id + ", Name: " + name + ", Email: " + email + ", Phone: " + phone + ", Address: " + address);
+                String password = resultSet.getString("password"); // added a get password line bc I couldn't remember some of them
+                System.out.println("ID: " + id + ", Name: " + name + ", Email: " + email + ", Phone: " + phone + ", Address: " + address + ", Password: " + password);
             }
 
             preparedStatement.close();
@@ -146,11 +148,21 @@ public class ConnDbOps {
         }
     }
 
+
+    /***
+     * This will delete any user inputted with the same formating as when inserting
+     * @param name
+     * @param email
+     * @param phone
+     * @param address
+     * @param password
+     * @author Carlos Berio
+     */
     public void deleteUser(String name, String email, String phone, String address, String password) {
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            String sql = "DELETE FROM users (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)";
+            String sql = "DELETE FROM users WHERE name = ? AND email = ? AND phone = ? AND address = ?AND password = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, email);
@@ -162,6 +174,9 @@ public class ConnDbOps {
 
             if (row > 0) {
                 System.out.println("A user was deleted successfully.");
+
+            } else {
+                System.out.println("No user was found with that information.");
             }
 
             preparedStatement.close();
@@ -170,5 +185,102 @@ public class ConnDbOps {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /***
+     *
+     * @param email
+     */
+
+    public void editUser(String email){
+        String input;
+        Scanner scan  = new Scanner(System.in);
+
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+                String sql = "SELECT * FROM users WHERE email = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, email);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                   if(resultSet.next()) {
+                       System.out.println("Which would you like to edit? please type one of the following:");
+                       System.out.println("Name, Phone, Address, Password");
+                   }else{System.out.println("No user found"); return;}
+
+                    input = scan.next();
+
+                    switch(input){
+                        case "Name" :
+                            System.out.println("What would you like to change the name to?");
+                            String newName = scan.next();
+                             String updateSql = "UPDATE users SET name = ? WHERE email = ?";
+                             preparedStatement = conn.prepareStatement(updateSql);
+                             preparedStatement.setString(1, newName);
+                             preparedStatement.setString(2, email);
+
+                             int rows = preparedStatement.executeUpdate();
+
+                             if (rows > 0) {
+                                 System.out.println("The new name is " + newName);
+                             }
+                             else{System.out.println("Failed to update");}
+
+                            break;
+
+                            case "Phone" :
+                                System.out.println("What would you like to change the phone number to?");
+                                String newPhone = scan.next();
+                                updateSql = "UPDATE users SET phone = ? WHERE email = ?";
+                                preparedStatement = conn.prepareStatement(updateSql);
+                                preparedStatement.setString(1, newPhone);
+                                preparedStatement.setString(2, email);
+
+                                rows = preparedStatement.executeUpdate();
+
+                                if (rows > 0) {
+                                    System.out.println("The new phone number is " + newPhone);
+                                }
+                                else{System.out.println("Failed to update");}
+
+                                break;
+
+                            case "Address" :
+                                System.out.println("What would you like to change the address to?");
+                                String newAddress = scan.next();
+                                updateSql = "UPDATE users SET address = ? WHERE email = ?";
+                                preparedStatement = conn.prepareStatement(updateSql);
+                                preparedStatement.setString(1, newAddress);
+                                preparedStatement.setString(2, email);
+
+                                rows = preparedStatement.executeUpdate();
+
+                                if (rows > 0) {
+                                    System.out.println("The new address is " + newAddress);
+                                }
+                                else{System.out.println("Failed to update");}
+
+                                break;
+
+                            case "Password" :
+                                System.out.println("What would you like to change password to?");
+                                String newPassword = scan.next();
+                                updateSql = "UPDATE users SET password = ? WHERE email = ?";
+                                preparedStatement = conn.prepareStatement(updateSql);
+                                preparedStatement.setString(1, newPassword);
+                                preparedStatement.setString(2, email);
+
+                                rows = preparedStatement.executeUpdate();
+
+                                if (rows > 0) {
+                                    System.out.println("The new password is " + newPassword);
+                                }
+                                else{System.out.println("Failed to update");}
+
+                                break;
+                    }
+                preparedStatement.close();
+            } catch (SQLException e) {
+            }
     }
 }

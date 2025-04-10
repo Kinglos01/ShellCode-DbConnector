@@ -8,7 +8,9 @@ import org.example.javafxdb_sql_shellcode.App;
 import java.io.IOException;
 
 public class SplashController {
-
+    /***
+     * Simple splash screen implementation
+     */
     @FXML
     private Button welcomeButton;
 

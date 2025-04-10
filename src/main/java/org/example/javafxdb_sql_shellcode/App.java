@@ -49,7 +49,8 @@ public class App extends Application {
             System.out.println("| To display all users,   press 'a' |");
             System.out.println("| To insert to the DB,    press 'i' |");
             System.out.println("| To query by name,       press 'q' |");
-            System.out.println("| To delete in the DB,    press 'd' |");
+            System.out.println("| To delete in the DB,    press 'd' |"); // added a way to delete inside the program with same formatting
+            System.out.println("| To edit the DB,         press 't' |");// added a way to edit using email hence it is the PK
             System.out.println("| To exit,                press 'e' |");
             System.out.println("===================================");
             System.out.print("Enter your choice: ");
@@ -59,14 +60,12 @@ public class App extends Application {
                 case 'g':
                      launch(args); //GUI
                     break;
-
                 case 'c':
                     cdbop.connectToDatabase(); //Your existing method
                     break;
                 case 'a':
                     cdbop.listAllUsers(); //all users in DB
                     break;
-
                 case 'i':
                     System.out.print("Enter Name: ");
                     String name = scan.next();
@@ -85,7 +84,7 @@ public class App extends Application {
                     String queryName = scan.next();
                     cdbop.queryUserByName(queryName); //Your queryUserByName method
                     break;
-                case 'd':
+                case 'd':  // delete user method
                     System.out.println("Please enter the following:");
                     System.out.print("Enter Name: ");
                     String delName = scan.next();
@@ -99,6 +98,11 @@ public class App extends Application {
                     String delPassword = scan.next();
                     cdbop.deleteUser(delName, delEmail, delPhone, delAddress, delPassword);
                     break;
+                case 't':
+                    System.out.print("Enter the email of the user you would like to edit: ");
+                        email = scan.next();
+                        cdbop.editUser(email);
+                        break;
                 case 'e':
                     System.out.println("Exiting...");
                     break;
@@ -109,8 +113,6 @@ public class App extends Application {
         } while (input != 'e');
 
         scan.close();
-
-       
     }
 
 
