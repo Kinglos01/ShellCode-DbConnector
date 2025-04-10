@@ -16,12 +16,12 @@ import java.sql.Statement;
  * @author MoaathAlrajab
  */
 public class ConnDbOps {
-    final String MYSQL_SERVER_URL = "jdbc:mysql://localhost/";
-    final String DB_URL = "jdbc:mysql://localhost/DBname";
-    final String USERNAME = "admin";
-    final String PASSWORD = "password";
-    
-    public  boolean connectToDatabase() {
+    final String MYSQL_SERVER_URL = "jdbc:mysql://csc311berio.mysql.database.azure.com/";
+    final String DB_URL = MYSQL_SERVER_URL + "DBname";
+    final String USERNAME = "berica";
+    final String PASSWORD = "FARM123$";
+
+    public boolean connectToDatabase() {
         boolean hasRegistredUsers = false;
 
 
@@ -68,7 +68,7 @@ public class ConnDbOps {
         return hasRegistredUsers;
     }
 
-    public  void queryUserByName(String name) {
+    public void queryUserByName(String name) {
 
 
         try {
@@ -94,8 +94,7 @@ public class ConnDbOps {
         }
     }
 
-    public  void listAllUsers() {
-
+    public void listAllUsers() {
 
 
         try {
@@ -121,7 +120,7 @@ public class ConnDbOps {
         }
     }
 
-    public  void insertUser(String name, String email, String phone, String address, String password) {
+    public void insertUser(String name, String email, String phone, String address, String password) {
 
 
         try {
@@ -147,5 +146,29 @@ public class ConnDbOps {
         }
     }
 
-    
+    public void deleteUser(String name, String email, String phone, String address, String password) {
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            String sql = "DELETE FROM users (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, phone);
+            preparedStatement.setString(4, address);
+            preparedStatement.setString(5, password);
+
+            int row = preparedStatement.executeUpdate();
+
+            if (row > 0) {
+                System.out.println("A user was deleted successfully.");
+            }
+
+            preparedStatement.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

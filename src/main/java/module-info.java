@@ -3,7 +3,7 @@ module org.example.javafxdb_sql_shellcode {
     requires javafx.fxml;
     requires java.sql;
 
-
+    opens org.example.javafxdb_sql_shellcode.db to javafx.fxml;
     opens org.example.javafxdb_sql_shellcode to javafx.fxml;
     exports org.example.javafxdb_sql_shellcode;
 }

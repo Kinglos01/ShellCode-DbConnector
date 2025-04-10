@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import javafx.scene.paint.Color;
 import org.example.javafxdb_sql_shellcode.db.ConnDbOps;
+import org.example.javafxdb_sql_shellcode.db.SplashController;
 
 /**
  * JavaFX App
@@ -20,12 +21,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("splash"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -48,6 +49,7 @@ public class App extends Application {
             System.out.println("| To display all users,   press 'a' |");
             System.out.println("| To insert to the DB,    press 'i' |");
             System.out.println("| To query by name,       press 'q' |");
+            System.out.println("| To delete in the DB,    press 'd' |");
             System.out.println("| To exit,                press 'e' |");
             System.out.println("===================================");
             System.out.print("Enter your choice: ");
@@ -82,6 +84,20 @@ public class App extends Application {
                     System.out.print("Enter the name to query: ");
                     String queryName = scan.next();
                     cdbop.queryUserByName(queryName); //Your queryUserByName method
+                    break;
+                case 'd':
+                    System.out.println("Please enter the following:");
+                    System.out.print("Enter Name: ");
+                    String delName = scan.next();
+                    System.out.print("Enter Email: ");
+                    String delEmail = scan.next();
+                    System.out.print("Enter Phone: ");
+                    String delPhone = scan.next();
+                    System.out.print("Enter Address: ");
+                    String delAddress = scan.next();
+                    System.out.print("Enter Password: ");
+                    String delPassword = scan.next();
+                    cdbop.deleteUser(delName, delEmail, delPhone, delAddress, delPassword);
                     break;
                 case 'e':
                     System.out.println("Exiting...");
