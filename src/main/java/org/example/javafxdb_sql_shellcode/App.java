@@ -7,9 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Scanner;
-import javafx.scene.paint.Color;
+
 import org.example.javafxdb_sql_shellcode.db.ConnDbOps;
-import org.example.javafxdb_sql_shellcode.db.SplashController;
 
 /**
  * JavaFX App

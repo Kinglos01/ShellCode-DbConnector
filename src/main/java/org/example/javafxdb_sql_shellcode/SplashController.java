@@ -1,9 +1,8 @@
-package org.example.javafxdb_sql_shellcode.db;
+package org.example.javafxdb_sql_shellcode;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import org.example.javafxdb_sql_shellcode.App;
 
 import java.io.IOException;
 
