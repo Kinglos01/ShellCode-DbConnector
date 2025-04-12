@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxdb_sql_shellcode.PrimaryController">
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxdb_sql_shellcode.PrimaryController">
    <children>
-      <Label text="Primary View" />
-      <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>
+      <HBox prefHeight="144.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="144.0" prefWidth="240.0" />
+            <VBox prefHeight="200.0" prefWidth="140.0">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="527.0" text="Register below!">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="144.0" prefWidth="220.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="350.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="260.0" prefWidth="300.0">
+               <children>
+                  <Label text="Please enter your name" />
+                  <TextField fx:id="regNameText" />
+                  <Label text="Please enter your address" />
+                  <TextField fx:id="regAddressText" />
+                  <Label text="Please enter your phone number" />
+                  <TextField fx:id="regPhoneText" />
+                  <Label text="Please enter your email" />
+                  <TextField fx:id="regEmailText" />
+                  <Label text="Please enter your password" />
+                  <TextField fx:id="regPasswordText" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Label text="Already have an account? Sign in here." />
+      <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Click to sign in" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

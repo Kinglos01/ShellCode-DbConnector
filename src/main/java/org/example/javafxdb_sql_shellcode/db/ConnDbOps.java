@@ -4,6 +4,9 @@
  */
 package org.example.javafxdb_sql_shellcode.db;
 
+import org.example.javafxdb_sql_shellcode.App;
+import org.example.javafxdb_sql_shellcode.Person;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

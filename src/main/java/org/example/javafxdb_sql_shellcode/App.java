@@ -38,6 +38,7 @@ public class App extends Application {
     public static void main(String[] args) {
         cdbop = new ConnDbOps();
         Scanner scan = new Scanner(System.in);
+        Person person = null;
 
         char input;
         do {
@@ -48,8 +49,10 @@ public class App extends Application {
             System.out.println("| To display all users,   press 'a' |");
             System.out.println("| To insert to the DB,    press 'i' |");
             System.out.println("| To query by name,       press 'q' |");
-            System.out.println("| To delete in the DB,    press 'd' |"); // added a way to delete inside the program with same formatting
-            System.out.println("| To edit the DB,         press 't' |");// added a way to edit using email hence it is the PK
+            // added a way to delete inside the program with same formatting
+            System.out.println("| To delete in the DB,    press 'd' |");
+            // added a way to edit using email since it is the PK
+            System.out.println("| To edit the DB,         press 't' |");
             System.out.println("| To exit,                press 'e' |");
             System.out.println("===================================");
             System.out.print("Enter your choice: ");
@@ -76,11 +79,15 @@ public class App extends Application {
                     String address = scan.next();
                     System.out.print("Enter Password: ");
                     String password = scan.next();
+                    person = new Person(name, email, phone, address, password); // adding a person to the person class
+                    System.out.print("Person created in class: " + person.getName() + ' ' + person.getEmail() + ' ' + person.getPhone() + ' ' + person.getAddress() + ' ' + person.getPassword());
                     cdbop.insertUser(name, email, phone, address, password); //Your insertUser method
                     break;
                 case 'q':
                     System.out.print("Enter the name to query: ");
                     String queryName = scan.next();
+                   // if(person != null) {
+                    //System.out.print(person.getName());}
                     cdbop.queryUserByName(queryName); //Your queryUserByName method
                     break;
                 case 'd':  // delete user method
@@ -95,6 +102,8 @@ public class App extends Application {
                     String delAddress = scan.next();
                     System.out.print("Enter Password: ");
                     String delPassword = scan.next();
+//                    if(person != null) {
+//                    person.removePerson(delName, delEmail, delPhone, delAddress, delPassword);}
                     cdbop.deleteUser(delName, delEmail, delPhone, delAddress, delPassword);
                     break;
                 case 't':
