@@ -1,0 +1,13 @@
+.root{
+    -fx-background-color: lightgrey;
+}
+
+.label{
+    -fx-font-family: fantasy;
+    -fx-text-fill: darkblue;
+}
+
+.button{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}

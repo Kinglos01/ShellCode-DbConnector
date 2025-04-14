@@ -191,8 +191,8 @@ public class ConnDbOps {
     }
 
     /***
+     *Full editing functionality of the db based off the pk email
      *
-     * @param email
      */
 
     public void editUser(String email){

@@ -12,7 +12,11 @@
    <children>
       <HBox prefHeight="144.0" prefWidth="600.0">
          <children>
-            <VBox prefHeight="144.0" prefWidth="240.0" />
+            <VBox prefHeight="144.0" prefWidth="240.0">
+               <children>
+                  <Button fx:id="regMode" mnemonicParsing="false" onAction="#regSwitch" text="Switch Mode" />
+               </children>
+            </VBox>
             <VBox prefHeight="200.0" prefWidth="140.0">
                <children>
                   <Label prefHeight="27.0" prefWidth="527.0" text="Register below!">

@@ -22,6 +22,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("splash"), 640, 480);
         stage.setScene(scene);
+        mode("dark");
         stage.show();
     }
 
@@ -33,6 +34,14 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
 
         return fxmlLoader.load();
+    }
+
+    public static void mode(String mode) {
+        if (mode.equals("light")) {
+            scene.getStylesheets().add(App.class.getResource("light.css").toExternalForm());
+        } else if (mode.equals("dark")) {
+            scene.getStylesheets().add(App.class.getResource("dark.css").toExternalForm());
+        }
     }
 
     public static void main(String[] args) {
