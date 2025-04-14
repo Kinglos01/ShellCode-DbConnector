@@ -20,12 +20,14 @@ public class PrimaryController {
 
     @FXML
     private void regSwitch() {
-        if (!light) {
-            App.mode("light");
-            light = true;
-        } if(light){
-            App.mode("dark");
-        light = false;
-        }
+            if (!light) {
+                App.mode("light");
+                light = true;
+            }
+            if (light) {
+                App.mode("dark");
+                light = false;
+            }
+
     }
 }

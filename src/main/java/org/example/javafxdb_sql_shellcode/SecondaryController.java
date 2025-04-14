@@ -16,13 +16,15 @@ public class SecondaryController {
 
     @FXML
     private void signSwitch() {
-        if (!light) {
-            App.mode("light");
-            light = true;
-        } if(light) {
-            App.mode("dark");
-            light = false;
-        }
+            if (!light) {
+                App.mode("light");
+                light = true;
+            }
+            if (light) {
+                App.mode("dark");
+                light = false;
+            }
+
     }
 
 }
