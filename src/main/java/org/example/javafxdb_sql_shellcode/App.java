@@ -37,6 +37,8 @@ public class App extends Application {
     }
 
     public static void mode(String mode) {
+        scene.getStylesheets().clear();
+
         if (mode.equals("light")) {
             scene.getStylesheets().add(App.class.getResource("light.css").toExternalForm());
         } else if (mode.equals("dark")) {

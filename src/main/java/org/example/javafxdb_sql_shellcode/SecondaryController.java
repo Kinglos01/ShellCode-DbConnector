@@ -20,7 +20,7 @@ public class SecondaryController {
                 App.mode("light");
                 light = true;
             }
-            if (light) {
+            else{
                 App.mode("dark");
                 light = false;
             }
